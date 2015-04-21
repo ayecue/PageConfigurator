@@ -1,5 +1,9 @@
 <?php
 
-class Object_PageConfiguration extends Object_Concrete {
+namespace Object;
+
+use Object\Concrete as ObjectConcrete;
+
+class PageConfiguration extends ObjectConcrete {
 	
 }

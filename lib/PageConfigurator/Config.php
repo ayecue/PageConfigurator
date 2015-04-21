@@ -1,7 +1,14 @@
 <?php
 
+namespace PageConfigurator;
 
-class PageConfigurator_Config {
+use Pimcore\View as PimcoreView;
+use Document\Page as DocumentPage;
+use Object\Concrete as ObjectConcrete;
+use Object\PageConfiguration as PageConfiguration;
+use PageConfigurator\Helper as Helper;
+
+class Config {
 	private $properties = array();
 	private $view;
 	private $document;
@@ -14,7 +21,7 @@ class PageConfigurator_Config {
     	return $this->view;
     }
 
-    public function setView(Pimcore_View $view){
+    public function setView(PimcoreView $view){
 		$this->setDocument($view->_getParam('document'));
 
         $this->properties['editmode'] = $view->editmode;
@@ -27,7 +34,7 @@ class PageConfigurator_Config {
     	return $this->document;
     }
 
-    public function setDocument(Document_Page $page) {
+    public function setDocument(DocumentPage $page) {
     	$properties = $page->getProperties();
 
 		foreach ($properties as $property) {
@@ -37,10 +44,10 @@ class PageConfigurator_Config {
             $applied = false;
 
             if ($type == 'object') {
-                $object = Object_Concrete::getById($data);
+                $object = ObjectConcrete::getById($data);
 
-                if ($object instanceof Object_PageConfiguration) {
-                    $fields = PageConfigurator_Helper::getClassFields($object);
+                if ($object instanceof PageConfiguration) {
+                    $fields = Helper::getClassFields($object);
 
                     foreach ($fields as $field) {
                         $key = $field->name;

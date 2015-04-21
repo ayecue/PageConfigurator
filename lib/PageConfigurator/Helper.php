@@ -1,9 +1,13 @@
 <?php
 
+namespace PageConfigurator;
 
-class PageConfigurator_Helper {
+use Object\ClassDefinition as ClassDefinition;
+use Object\ClassDefinition\Layout as ClassLayout;
+
+class Helper {
     static private function cycleClassFields($context,&$data){
-        if (!isset($context) || !($context instanceof Object_Class_Layout)) {
+        if (!isset($context) || !($context instanceof ClassLayout)) {
             return;
         }
 
@@ -22,12 +26,12 @@ class PageConfigurator_Helper {
                 continue;
             }
 
-            if ($panel instanceof Object_Class_Layout_Panel && $panel->hasChilds()) {
+            if ($panel instanceof ClassLayout\Panel && $panel->hasChilds()) {
                 $panelChilds = $panel->getChilds();
                 $panelName = $panel->getName();
 
                 foreach ($panelChilds as $panelChild) {
-                    if (!($panelChild instanceof Object_Class_Data)) {
+                    if (!($panelChild instanceof ClassDefinition\Data)) {
                         continue;
                     }
 
@@ -57,7 +61,7 @@ class PageConfigurator_Helper {
                         "fieldtype" => $panelChild->fieldtype
                     );
                 }
-            } elseif ($panel instanceof Object_Class_Layout && $panel->hasChilds()) {
+            } elseif ($panel instanceof ClassLayout && $panel->hasChilds()) {
                 self::cycleClassFields($panel,$data);
             }
         }
