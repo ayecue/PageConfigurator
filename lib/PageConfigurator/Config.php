@@ -3,9 +3,9 @@
 namespace PageConfigurator;
 
 use Pimcore\View as PimcoreView;
-use Document\Page as DocumentPage;
-use Object\Concrete as ObjectConcrete;
-use Object\PageConfiguration as PageConfiguration;
+use Pimcore\Model\Document\Page as DocumentPage;
+use Pimcore\Model\Object\Concrete as ObjectConcrete;
+use Pimcore\Model\Object\PageConfiguration as PageConfiguration;
 use PageConfigurator\Helper as Helper;
 
 class Config {
