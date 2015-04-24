@@ -2,8 +2,8 @@
 
 namespace PageConfigurator;
 
-use Object\ClassDefinition as ClassDefinition;
-use Object\ClassDefinition\Layout as ClassLayout;
+use Pimcore\Model\Object\ClassDefinition as ClassDefinition;
+use Pimcore\Model\Object\ClassDefinition\Layout as ClassLayout;
 
 class Helper {
     static private function cycleClassFields($context,&$data){
